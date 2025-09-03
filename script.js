@@ -1,6 +1,6 @@
 const container = document.querySelector('.container');
 const resetButton = document.getElementById('reset');
-
+let numHighlights = 0;
 
 function createSquares(n) {
     for (let i = 0; i < n*n; i++) {
@@ -12,9 +12,7 @@ function createSquares(n) {
     }
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
-    square.addEventListener('mouseover', () => {
-    square.style.backgroundColor = 'lightslategray';
-    });
+    square.addEventListener('mouseover', () => changeColor(square));
 });
 }
 createSquares(16)
@@ -23,5 +21,13 @@ resetButton.addEventListener('click', () => {
     const numSquares = prompt('Please enter number of squares for side length')
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => square.remove());
+    numHighlights = 0;
     createSquares(numSquares);
 });
+
+
+function changeColor(square) {
+        square.style.backgroundColor = "lightslategray";
+        square.style.opacity = (numHighlights < 10) ? (0.1 * (numHighlights)) : 1;
+        numHighlights++;
+    }
