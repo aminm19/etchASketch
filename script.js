@@ -18,7 +18,10 @@ function createSquares(n) {
 createSquares(16)
 
 resetButton.addEventListener('click', () => {
-    const numSquares = prompt('Please enter number of squares for side length')
+    let numSquares = prompt('Please enter number of squares for side length');
+    while (numSquares > 100) {
+        numSquares = prompt('Please enter a number less than or equal to 100');
+    }
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => square.remove());
     numHighlights = 0;
